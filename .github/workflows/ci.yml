@@ -1,0 +1,28 @@
+name: Frontend CI
+
+on:
+  push:        # runs when you push to any branch
+  pull_request: # runs on PRs
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout repo
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Run build
+      - name: Build project
+        run: npm run build
