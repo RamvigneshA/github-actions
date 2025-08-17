@@ -2,11 +2,11 @@
 
 // Example function
 function greet(name) {
-  console.log(`Hello, ${name} 🚀`); // This will be caught by ESLint if no-console rule is enabled
+
+  console.warn("This is a warning message.");
+  console.error("This is an error message.");
+  // This will trigger an ESLint error if "no-console" is set to "error
 }
 
 // Run function
 greet("GitHub Actions");
-
-// Another message
-console.log("This is a debug log that should be removed ❌");
