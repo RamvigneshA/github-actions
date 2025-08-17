@@ -10,7 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: echo "Linting code"
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - run: npm install
+
+      # Run ESLint across the codebase
+      - run: npx eslint .
+
   main-jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
@@ -19,6 +28,3 @@ jobs:
       - uses: actions/checkout@v3
       - run: echo "🚀 Running workflow for MAIN branch"
       - run: node hello.js
- 
-  
-   
