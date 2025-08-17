@@ -2,12 +2,25 @@ name: Practice GitHub Actions
 
 on:
   push:
-  pull_request:
+    branches:
+      - main
+      - helper
 
 jobs:
-  run-hello:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Say Hello
-        run: echo "Hello from GitHub Actions 🚀"
+ main-jobs:
+   if: github.ref == 'refs/heads/main'
+   runs-on: ubuntu-latest
+   steps:
+      - uses: actions/checkout@v3
+      - run: echo "🚀 Running workflow for MAIN branch"
+      - run: node hello.js
+ helper-jobs: 
+   if: github.ref == 'refs/heads/helper'
+   runs-on: ubuntu-latest
+   steps:
+      - uses: actions/checkout@v3
+      - run: echo "🚀 Running workflow for HELPER branch"
+      - run: node hello.js
+ 
+  
+   
